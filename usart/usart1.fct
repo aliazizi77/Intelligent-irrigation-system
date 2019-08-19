@@ -1,0 +1,12 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"usart.c" LINE:228
+printf DSTACK_USAGE:10 DSTACK_LEVEL:10 FILE:"G:\bargh.esmaeil\codevision\lib\stdio.lib" LINE:1476
+_print DSTACK_USAGE:94 DSTACK_LEVEL:104 FILE:"G:\bargh.esmaeil\codevision\lib\stdio.lib" LINE:1162
+_ftoe DSTACK_USAGE:16 DSTACK_LEVEL:120 FILE:"G:\bargh.esmaeil\codevision\lib\stdio.lib" LINE:1098
+floor DSTACK_USAGE:4 DSTACK_LEVEL:124 FILE:"G:\bargh.esmaeil\codevision\lib\math.lib" LINE:659
+ftrunc DSTACK_USAGE:4 DSTACK_LEVEL:128 FILE:"G:\bargh.esmaeil\codevision\lib\math.lib" LINE:544
+ext_int0_isr DSTACK_USAGE:12 DSTACK_LEVEL:140 FILE:"usart.c" LINE:210
+printf DSTACK_USAGE:10 DSTACK_LEVEL:150 FILE:"G:\bargh.esmaeil\codevision\lib\stdio.lib" LINE:1476
+_print DSTACK_USAGE:94 DSTACK_LEVEL:244 FILE:"G:\bargh.esmaeil\codevision\lib\stdio.lib" LINE:1162
+_ftoe DSTACK_USAGE:16 DSTACK_LEVEL:260 FILE:"G:\bargh.esmaeil\codevision\lib\stdio.lib" LINE:1098
+floor DSTACK_USAGE:4 DSTACK_LEVEL:264 FILE:"G:\bargh.esmaeil\codevision\lib\math.lib" LINE:659
+ftrunc DSTACK_USAGE:4 DSTACK_LEVEL:268 FILE:"G:\bargh.esmaeil\codevision\lib\math.lib" LINE:544

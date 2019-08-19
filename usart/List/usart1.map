@@ -1,0 +1,36 @@
+RAM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+Humidity1                                                         0x018C       4
+Humidity2                                                         0x0190       4
+adc                                                               0x0194      12
+Graph1                                                            0x01A0      14
+Graph2                                                            0x01AE      14
+Day                                                               0x01BC       2
+rx_buffer                                                         0x01BE      64
+rx_wr_index                                                       0x01FE       1
+rx_rd_index                                                       0x01FF       1
+rx_counter                                                        0x0200       1
+tx_buffer                                                         0x0201     100
+tx_wr_index                                                       0x0265       1
+tx_rd_index                                                       0x0266       1
+tx_counter                                                        0x0267       1
+_seed                                                             0x0268       4
+
+EEPROM Allocation
+Variable                                                          Address   Size
+--------------------------------------------------------------------------------
+DailyAverage1                                                     0x0000       4
+DailyAverage2                                                     0x0004       4
+Sample1                                                           0x0008       8
+Sample2                                                           0x0010       8
+
+Register Allocation
+Variable                                                          Register  Size
+--------------------------------------------------------------------------------
+tenth                                                             R4,R5        2
+Min                                                               R6,R7        2
+Sec                                                               R8,R9        2
+Min1                                                              R10,R11      2
+Hour                                                              R12,R13      2
+rx_buffer_overflow                                                R2.0      1bit
