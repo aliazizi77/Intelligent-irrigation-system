@@ -1,4 +1,4 @@
-<!doctype html>
+"<!doctype html>"
 <html dir="rtl" lang="fa">
   <head>
     <!-- Required meta tags -->
@@ -24,12 +24,15 @@
     {
       margin-bottom: 10px !important;
     }
+    label
+    {
+      float : right ;
+    }
     </style>
     <title>سیستم آبیاری هوشمند</title>
   </head>
   <body onload="autoRefresh(120000);">
       <!--start top menu-->
-      <!--
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">سیستم آبیاری هوشمند</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +46,7 @@
                 <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">خرید</a>
               </div>
             </div>
-          </nav>-->
+          </nav>
           <div id="header"></div>
           <!--END top menu-->
         <div class="container">
@@ -69,14 +72,18 @@
                                         <H2 style="float : right;">نحوه آبیاری را مشخص نمایید</H2>
                                       </div>
                                   <div class="col-6" style="width: 100%" >
+                                    <form>
                                   <div class="custom-control custom-radio custom-control-inline">
                                       <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
                                       <label class="custom-control-label" for="customRadioInline1">آبیاری دستی</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
                                       <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                      <label class="custom-control-label" for="customRadioInline2">آبیاری با سنسور</label>
+                                      <label class="custom-control-label" for="customRadioInline2">آبیاری هوشمند</label>
                                     </div>
+                                    <button class="btn btn-primary" type="submit">ثبت</button>
+
+                                  </form>
                                   </div>
   
                                   </div>
@@ -93,23 +100,41 @@
                           </div>
                           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body" style="width: 100%">
-                              <div class="row">
-                                  <div class="col-6">
-                                      <H4 style="float : right;">مقدار حداکثر و حداقل رطوبت را تنظیم نمایید</H2>
+
+                              <form>
+                                <div class="form-row">
+                                  <div class="col-md-4 mb-3">
+                                    <label for="validationDefault01"> رطوبت آستانه آسیب پذیری</label>
+                                    <div class="input-group flex-nowrap" style="direction: ltr;">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-wrapping">درصد</span>
+                                      </div>
+                                      <input type="text" class="form-control"   placeholder="15" aria-label="Username" aria-describedby="addon-wrapping">
                                     </div>
-                                <div class="col-6" style="width: 100%" >
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadioInline1">آبیاری دستی</label>
-                                  </div>
-                                  <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadioInline2">آبیاری با سنسور</label>
+                                </div>
+                                  <div class="col-md-4 mb-3">
+                                    <label for="validationDefault02">حداقل رطوبت</label>
+                                    <div class="input-group flex-nowrap" style="direction: ltr;">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-wrapping">درصد</span>
+                                      </div>
+                                      <input type="text" class="form-control"   placeholder="35" aria-label="Username" aria-describedby="addon-wrapping">
+                                    </div>
+                                </div>
+                                  <div class="col-md-4 mb-3">
+                                    <label for="validationDefaultUsername">رطوبت ایده آل</label>
+                                    <div class="input-group flex-nowrap" style="direction: ltr;">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-wrapping">درصد</span>
+                                      </div>
+                                      <input type="text" class="form-control"   placeholder="70" aria-label="Username" aria-describedby="addon-wrapping">
+                                    </div>
+
                                   </div>
                                 </div>
 
-                                </div>
-
+                                <button class="btn btn-primary" type="submit">ثبت</button>
+                              </form>
                             </div>
                           </div>
                         </div>
@@ -123,7 +148,18 @@
                           </div>
                           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                              <form>
+                                <div class="form-row">
+                                  <div class="col">
+                                    <input type="text" class="form-control" placeholder="نام کاربری">
+                                  </div>
+                                  <div class="col">
+                                    <input type="password" class="form-control" placeholder="رمز عبور">
+                                  </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">ثبت</button>
+
+                              </form>
                             </div>
                           </div>
                         </div>
@@ -132,24 +168,7 @@
                 </div>
               
                 <!-- Columns are always 50% wide, on mobile and desktop -->
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                        <div class="card">
-                                <h5 class="card-header" style="text-align: right;">نمودار رطوبت</h5>
-                                <div class="card-body">
-                                        <canvas id="myChart" style="max-width: 500px;"></canvas>
-                                </div>
-                              </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                        <div class="card">
-                                <h5 class="card-header" style="text-align: right;">نمودار دما</h5>
-                                <div class="card-body">
-                                    <canvas id="lineChart"></canvas>
-                                </div>
-                              </div>
-                    </div>
-                </div>
+
               </div>
 
     <!-- Optional JavaScript -->
@@ -164,83 +183,10 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js"></script>
     <script>
     //line
-var ctxL = document.getElementById("lineChart").getContext('2d');
-var myLineChart = new Chart(ctxL, {
-  type: 'line',
-  data: {
-    labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
-    datasets: [{
-        label: "My First dataset",
-        data: [65, 59, 80, 81, 56, 55, 40,100],
-        backgroundColor: [
-          'rgba(105, 0, 132, .2)',
-        ],
-        borderColor: [
-          'rgba(200, 99, 132, .7)',
-        ],
-        borderWidth: 2
-      },
-      {
-        label: "My Second dataset",
-        data: [28, 48, 40, -19, 86, 27, 90,-20],
-        backgroundColor: [
-          'rgba(0, 137, 132, .2)',
-        ],
-        borderColor: [
-          'rgba(0, 10, 130, .7)',
-        ],
-        borderWidth: 2
-      }
-    ]
-  },
-  options: {
-    responsive: true
-  }
-});
+
 
     
     
-    var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
-            datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 100, -3,-20],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        });</script>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-            <script>$(function () {$("#header").load("_header.html");$("#footer").load("_footer.html");});</script>
 
   </body>
 </html>

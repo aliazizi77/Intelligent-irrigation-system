@@ -65,7 +65,7 @@
                   </div>
                   <div class="col-12 col-md-4">
                         <div class="card">
-                                <h5 class="card-header" style="text-align: right;">میزان رطوبت</h5>
+                                <h5 class="card-header" style="text-align: right;">میزان رطوبت سنسور 1</h5>
                                 <div class="card-body">
                                     <div class="input-group flex-nowrap" style="direction: ltr;">
                                         <div class="input-group-prepend">
@@ -73,6 +73,44 @@
                                         </div>
                                         <input type="text" class="form-control" disabled placeholder="60" aria-label="Username" aria-describedby="addon-wrapping">
                                       </div>                                    </div>
+                              </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                        <div class="card">
+                                <h5 class="card-header" style="text-align: right;">میزان رطوبت سنسور 2</h5>
+                                <div class="card-body" style="text-align: center">
+                                  <div class="input-group flex-nowrap" style="direction: ltr;">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="addon-wrapping">درصد</span>
+                                    </div>
+                                    <input type="text" class="form-control" disabled placeholder="60" aria-label="Username" aria-describedby="addon-wrapping">
+                                  </div>                                    
+                            </div>
+                              </div>
+
+                  </div>
+                </div>
+                <div class="row" style="margin-bottom: 20px;margin-top: 20px;">
+                  <div class="col-12 col-md-4">
+                        <div class="card">
+                                <h5 class="card-header" style="text-align: right;">وضعیت شیر 1</h5>
+                                <div class="card-body">
+                                  <div class="custom-control custom-switch">
+                                    <input onclick="check()" type="checkbox" class="custom-control-input" id="customSwitch1">
+                                    <label class="custom-control-label badge badge-success" for="customSwitch1" id="label1">فعال</label>
+                                  </div>                                
+                                </div>
+                              </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                        <div class="card">
+                                <h5 class="card-header" style="text-align: right;">وضعیت شیر 2</h5>
+                                <div class="card-body">
+                                    <div class="custom-control custom-switch">
+                                        <input onclick="check1()" type="checkbox" class="custom-control-input" id="customSwitch2">
+                                        <label class="custom-control-label badge badge-success" for="customSwitch2" id="label2">فعال</label>
+                                      </div>  
+                                    </div>
                               </div>
                   </div>
                   <div class="col-12 col-md-4">
@@ -85,12 +123,12 @@
 
                   </div>
                 </div>
-              
+
                 <!-- Columns are always 50% wide, on mobile and desktop -->
                 <div class="row">
                   <div class="col-12 col-md-6">
                         <div class="card">
-                                <h5 class="card-header" style="text-align: right;">نمودار رطوبت</h5>
+                                <h5 class="card-header" style="text-align: right;">نمودار دما</h5>
                                 <div class="card-body">
                                         <canvas id="myChart" style="max-width: 500px;"></canvas>
                                 </div>
@@ -98,7 +136,7 @@
                   </div>
                   <div class="col-12 col-md-6">
                         <div class="card">
-                                <h5 class="card-header" style="text-align: right;">نمودار دما</h5>
+                                <h5 class="card-header" style="text-align: right;">نمودار رطوبت</h5>
                                 <div class="card-body">
                                     <canvas id="lineChart"></canvas>
                                 </div>
@@ -118,6 +156,30 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js"></script>
     <script>
+
+function check() {
+  if(document.getElementById("customSwitch1").checked){
+    document.getElementById('label1').innerHTML = "فعال";
+    document.getElementById("label1").className = 'custom-control-label badge badge-success';
+  }else{
+    document.getElementById('label1').innerHTML = "غیرفعال";
+    document.getElementById("label1").className = 'custom-control-label badge badge-danger';
+
+  }
+}
+
+function check1() {
+  if(document.getElementById("customSwitch2").checked){
+    document.getElementById('label2').innerHTML = "فعال";
+    document.getElementById("label2").className = 'custom-control-label badge badge-success';
+
+  }else{
+    document.getElementById('label2').innerHTML = "غیرفعال";
+    document.getElementById("label2").className = 'custom-control-label badge badge-danger';
+
+  }
+}
+
     //line
 var ctxL = document.getElementById("lineChart").getContext('2d');
 var myLineChart = new Chart(ctxL, {
@@ -125,7 +187,7 @@ var myLineChart = new Chart(ctxL, {
   data: {
     labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
     datasets: [{
-        label: "My First dataset",
+        label: "سنسور 1",
         data: [65, 59, 80, 81, 56, 55, 40],
         backgroundColor: [
           'rgba(105, 0, 132, .2)',
@@ -136,7 +198,7 @@ var myLineChart = new Chart(ctxL, {
         borderWidth: 2
       },
       {
-        label: "My Second dataset",
+        label: "سنسور 2",
         data: [28, 48, 40, 19, 86, 27, 90],
         backgroundColor: [
           'rgba(0, 137, 132, .2)',
@@ -161,7 +223,7 @@ var myLineChart = new Chart(ctxL, {
           data: {
             labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
             datasets: [{
-              label: '# of Votes',
+              label: 'میزان دما - درجه سیلسیوس',
               data: [12, 19, 3, 5, 2, 3],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
