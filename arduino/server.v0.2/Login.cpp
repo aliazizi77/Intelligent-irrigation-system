@@ -37,8 +37,8 @@ String Login =
  "               <div class=\"login_col_left\">  "   
  "                   <form method=\"POST\" class=\"login\">  "   
  "                   <h1>سیستم ابیاری هوشمند</h1>  "   
- "                   <input type=\"user\" name=\"USERNAME\" class=\"login-input\" placeholder=\"نام کاربری\">  "   
- "                   <input type=\"user\" name=\"PASSWORD\" class=\"login-input\" placeholder=\"رمز عبور\">  " 
+ "                   <input type=\"text\" name=\"USERNAME\" class=\"login-input\" placeholder=\"نام کاربری\">  "   
+ "                   <input type=\"password\" name=\"PASSWORD\" class=\"login-input\" placeholder=\"رمز عبور\">  " 
  "                    <input type='submit' name='SUBMIT' value='ورود' class='login-submit'></form>"
    
  "     "   

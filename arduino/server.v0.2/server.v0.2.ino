@@ -11,46 +11,82 @@
 //const char* ssid = "TP-LINK_A25DF7";
 //const char* password = "34180012";
 
-const char* ssid= "AndroidAP";
-const char* password = "123456789";
+//const char* ssid= "AndroidAP";
+//const char* password = "123456789";
+
+
+//Static IP address configuration
+IPAddress staticIP(192, 168, 1,82); //ESP static ip
+IPAddress gateway(192, 168, 1,1 );   //IP Address of your WiFi Router (Gateway)
+IPAddress subnet(255, 255, 255, 0);  //Subnet mask
+IPAddress dns(8, 8, 8, 8);  //DNS
+
+const int AirValue = 825; //you need to replace this value with Value_1
+const int WaterValue = 400; //you need to replace this value with Value_2
+int intervals = (AirValue - WaterValue)/3,i=0;
+int soilMoistureValue = 0,value1=0;
+String value;
+
+
+//const char* ssid= "D-Link";
+//const char* password = "123456789";
+
 
 //const char* ssid= "ali";
 //const char* password = "123456789";
 
+//const char* ssid= "esmaeil";
+//const char* password = "esmaeiljalali76@gmail";
+
 //const char* ssid = "InterNet-SabaNet";
 //const char* password = "Saba@2627282930#Net";
-
+//String ssid ="aa";
+//String password="bb";
+String ssid,password;
 String pass   = "ali";
 String USERNAME ="ali";
 bool   authentified = false;
-String a,b,Graph1[7],Graph2[7];
-int c=0,d=0,s2,s1,s,humidity1;//humidity1=Humidity1(String)to int
 
-String p, Humidity1, Humidity2;
-String Ih,Mh,Th;//Ih=Ideal humidity(off pump),Mh=Min humidity(on pump in night),Th=Threshold humidity(on pump): reed from front end
-int ih,mh,th;//ih=Ideal humidity(off pump),mh=Min humidity(on pump in night),th=Threshold humidity(on pump):Ih,Mh,Th=>convert to int
 bool state=0,Typeofirrigation=0;//Typeofirrigation abyary auto ormanual
 ESP8266WebServer server(80);
 
 const int led = LED_BUILTIN;
 
+         
+
 void handleRoot() {
+
+
   
-  //server.send(200, "text/plain", "Hello from esp8266!");
-  if(authentified == false){
+ if(authentified==false){
      server.send(200, "text/html", Login);
-      digitalWrite(led, 1);
-           }
-     //      if (server.hasArg("USERNAME") && server.hasArg("PASSWORD")){
+     delay(50);
+    //  digitalWrite(led, 1);
+           }  
+                  // while(authentified == false){
+       // if (server.hasArg("USERNAME") && server.hasArg("PASSWORD"))
+    /*    
+      while(server.arg("PASSWORD") !=pass)
+      {
+       delay(200);
+        }
+          */
+   /* delay(500);
+    state=!state;
+    digitalWrite(led,state);
+          */
+      //   }
+     while(authentified==false){
                 if (server.arg("USERNAME") == USERNAME &&  server.arg("PASSWORD") == pass ){  
                      // server.send(200,"text/html",Header);
                      authentified = true;
                     digitalWrite(led,1);
-                }                                         
-               
-          
-                   if (authentified == true){
-                          //     server.send(200, "text/html", Header);
+                    delay(20);
+                }
+                delay(30);                              
+        }
+           
+
 String Home1=
                            
 "   <!doctype html>  " 
@@ -136,7 +172,7 @@ String Home1=
 "                                           <div class=\"input-group-prepend\">  " 
 "                                             <span class=\"input-group-text\" id=\"addon-wrapping\">درصد</span>  " 
 "                                           </div>  " 
-"                                           <input type=\"text\" class=\"form-control\" disabled placeholder=\"60\" aria-label=\"Username\" aria-describedby=\"addon-wrapping\">  " 
+"                                           <input type=\"text\" class=\"form-control\" disabled placeholder=\""+value+"\" aria-label=\"Username\" aria-describedby=\"addon-wrapping\">  " 
 "                                         </div>                                    </div>  " 
 "                                 </div>  " 
 "                     </div>  " 
@@ -191,7 +227,7 @@ String Home1=
 "       labels: [\"شنبه\", \"یکشنبه\", \"دوشنبه\", \"سه شنبه\", \"چهارشنبه\", \"پنج شنبه\", \"جمعه\"],"
 "       datasets: [{  " 
 "           label: \"My First dataset\",  " 
-"           data: ["+Graph1[0]+","+Graph1[1]+", "+Graph1[2]+","+Graph1[3]+", "+Graph1[4]+", "+Graph1[5]+", "+Graph1[6]+"],  " 
+"           data: [\"+10\",\"+20+\", \"30+\",\"+40+\", \"+50+\", \"+60+\", \"+70+\"],  " 
 "           backgroundColor: [  " 
 "           \" rgba(105, 0, 132, .2)\",  " 
 "           ],  " 
@@ -202,7 +238,7 @@ String Home1=
 "         },  " 
 "         {  " 
 "           label: \"My Second dataset\" , " 
-"           data: ["+23+","+30+", "+62+","+45+", "+36+", "+41+", "+39+"],  " 
+"           data: [\"+23+\",\"+30+\", \"+62+\",\"+45+\", \"+36+\", \"+41+\", \"+39+\"],  " 
 "           backgroundColor: [  " 
 "            \"rgba(105, 0, 132, .2)\",  " 
 "           ],  " 
@@ -265,13 +301,20 @@ String Home1=
 "     </body>  " 
 "  </html> " ; 
 
-server.send(200,"text/html",Home1);
- 
-                    }
+  
+  //server.send(200, "text/plain", "Hello from esp8266!");
+  
+           
+digitalWrite(led,0);
+           
+        
+                  
+                          //     server.send(200, "text/html", Header);
+if(authentified == true)
+           server.send(200,"text/html",Home1);
+                          
 }
      
-    
-    
     
           
 
@@ -293,13 +336,45 @@ void handleNotFound(){
   server.send(404, "text/plain", message);
   
 }
-
+           
 void setup(void){
   pinMode(led, OUTPUT);
   pinMode(13, OUTPUT);
   digitalWrite(led, 0);
   Serial.begin(9600);
+  
+  Serial.print("ssid:");
+while(Serial.available()==0){}
+  if(Serial.available()>0){
+ssid=Serial.readString();
+i=ssid.length();
+ssid.remove(i-1);
+i=0;
+Serial.println(ssid);
+
+  }
+  Serial.print("password:");
+  while(Serial.available()==0){}
+  if(Serial.available()>0){
+password=Serial.readString();
+i=password.length();
+password.remove(i-1);
+Serial.println(password);
+  }
+  Serial.print(ssid);
+  
+  Serial.print(password);
+  
   WiFi.begin(ssid, password);
+  //
+  
+  // WiFi.disconnect();
+
+    // WiFi.begin(ssid, password);
+  WiFi.config(staticIP, subnet, gateway, dns);
+
+   WiFi.mode(WIFI_STA);
+   //
   Serial.println("");
 
   // Wait for connection
@@ -308,6 +383,7 @@ void setup(void){
     state=!state;
     Serial.print(".");
     digitalWrite(led,state);
+
   }
   Serial.println("");
   Serial.print("Connected to ");
@@ -319,7 +395,23 @@ void setup(void){
     Serial.println("MDNS responder started");
   }
 
+       
+/*if(authentified==false){
+     server.send(200, "text/html", Login);
+     delay(10);
+      digitalWrite(led, 1);
+           }    
+    
+                    while(authentified == false){
+       // if (server.hasArg("USERNAME") && server.hasArg("PASSWORD"))
+                if (server.arg("USERNAME") == USERNAME &&  server.arg("PASSWORD") == pass ){  
+                     // server.send(200,"text/html",Header);
+                     authentified = true;
+                    digitalWrite(led,1);
+                }                            
+           }*/
   server.on("/", handleRoot);
+
   server.on("/inline", [](){
     server.send(200, "text/plain", "this works as well");
   });
@@ -331,85 +423,34 @@ void setup(void){
 }
 
 void loop(void){
+/////
+soilMoistureValue = analogRead(A0); //put Sensor insert into soil
+value1=soilMoistureValue;
+delay(50);
+value1-=827;
+delay(50);
+value1/=(-4.25);
+Serial.print("A0:");
+ Serial.println(soilMoistureValue);
+Serial.print("String A0:");
+ Serial.println(value1); 
+ value=value1;
+if(soilMoistureValue > WaterValue && soilMoistureValue < (WaterValue + intervals))
+{
+ Serial.println("Very Wet");
+}
+else if(soilMoistureValue > (WaterValue + intervals) && soilMoistureValue < (AirValue - intervals))
+{
+ Serial.println("Wet");
+}
+else if(soilMoistureValue < AirValue && soilMoistureValue > (AirValue - intervals))
+{
+ Serial.println("Dry");
+}
+delay(10000);
+
+
+ ///// 
   server.handleClient();
-  ih=Ih.toInt();
-  mh=Mh.toInt();
-  th=Th.toInt();
-  humidity1=Humidity1.toInt();
-  if(humidity1<mh||humidity1<th||Typeofirrigation==1){
-    digitalWrite(13,1);
-    }
-  if(humidity1>ih||Typeofirrigation==0){
-    digitalWrite(13,0);
     }
   
-}
-
-void serialEvent(){
-  p=Serial.readString();
-if(p=="sensor")
-  s=1;  
-if(p=="Graph") 
-   s=2;
-if(s==1){   
-     s1++;
-     if(s1==1){        
-         Humidity1= Serial.readString();   
-       }
-
-      if(s1==2){        
-         Humidity2= Serial.readString(); 
-         s=0;  
-         s1=0;
-       }
-       }
-if(s==2){
-  s2++;
-    switch(s2){
-       case 1:
-        Graph1[0]= Serial.readString();
-        break;       
-       case 2:
-        Graph1[1]=Serial.readString();
-        break;
-       case 3:
-        Graph1[2]= Serial.readString();       
-        break;
-       case 4:
-        Graph1[3]=Serial.readString();
-        break;
-       case 5:
-         Graph1[4]= Serial.readString();       
-         break;
-       case 6:
-         Graph1[5]=Serial.readString();
-         break;
-       case 7:
-         Graph1[6]= Serial.readString();       
-         break;
-       case 8:
-        Graph2[0]=Serial.readString();
-        break;
-       case 9:
-        Graph2[1]=Serial.readString();
-        break;
-       case 10:  
-        Graph2[2]=Serial.readString();
-        break;
-       case 11:
-        Graph2[3]=Serial.readString();
-        break;
-       case 12:
-        Graph2[4]=Serial.readString();
-        break;
-       case 13:
-        Graph2[5]=Serial.readString();
-        break;
-       case 14:
-        Graph2[6]=Serial.readString();
-        s2=0;
-        break;
-   }
-   
-}
-}
